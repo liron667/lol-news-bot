@@ -1,0 +1,35 @@
+# League of Legends news bot (Hebrew posts). TARGET_CHANNEL_ID env var (or .env) overrides target_channel_id.
+
+target_channel_id: "-1003749079898"
+lookback_hours: 6
+seen_retention_days: 30
+
+# AI post generation (needs GEMINI_API_KEY secret). Translates to Hebrew; falls back to title+link if off/failed.
+ai:
+  enabled: true
+  model: gemini-flash-latest
+  team: "League of Legends"
+  hashtags: ["#LeagueOfLegends", "#LoL"]
+
+telegram_channels: []
+
+rss_feeds:
+  - name: "Dexerto LoL"
+    url: "https://www.dexerto.com/league-of-legends/feed/"
+    always_relevant: true          # dedicated LoL feed: everything is on-topic
+  - name: "The Loadout"
+    url: "https://www.theloadout.com/feed"
+
+html_sources: []
+wp_sources: []
+
+# For the general feeds above, keep only items mentioning LoL / its leagues. Dexelto bypasses this.
+keywords:
+  - "League of Legends"
+  - "LEC"
+  - "LCK"
+  - "LPL"
+  - "LCS"
+  - "Worlds"
+
+exclusions: []
