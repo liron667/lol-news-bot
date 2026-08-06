@@ -284,12 +284,14 @@ def main():
         ):
             continue
         if ai_cfg.get("enabled") and not item["link"].startswith("https://t.me/"):
-            body = fetch_article_text(item["link"]) or item.get("summary", "")
+            body = fetch_article_text(item["link"])
+            if len(body) < 200:  # e.g. Google News redirect links aren't directly fetchable
+                body = item.get("summary") or item["title"]
             ai_text = ai_message(item["title"], body, ai_cfg)
             if ai_text and ai_text.strip().upper().startswith("SKIP"):
                 # AI judged this off-topic (e.g. basketball) — remember and skip.
                 if DRY_RUN:
-                    print(f"[skip non-soccer] {item['source']}: {item['title']}")
+                    print(f"[skip off-topic] {item['source']}: {item['title']}")
                 else:
                     seen[item["id"]] = datetime.now(timezone.utc).isoformat()
                 continue
