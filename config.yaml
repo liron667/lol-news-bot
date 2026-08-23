@@ -1,6 +1,6 @@
 # League of Legends news bot (Hebrew posts). TARGET_CHANNEL_ID env var (or .env) overrides target_channel_id.
 
-target_channel_id: "-1003749079898"
+target_channel_id: ""      # set via TARGET_CHANNEL_ID secret / .env
 lookback_hours: 2          # Google News is high-volume + fresh; small window avoids a first-run flood
 seen_retention_days: 30
 
